@@ -109,6 +109,7 @@ body {
 
 .tet {
   background-color: yellow;
+  border: 1px dotted black;
 }
 .freeze {
   background-color: none;
@@ -126,7 +127,7 @@ body {
 }
 .next-tetro-grid div{
   width: 25%;
-  border: 1px dotted black;
+  
 
 
 }

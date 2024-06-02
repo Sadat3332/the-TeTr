@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             currentTetromino = tetrominos[random][curRotation];
             nextRandom =  Math.floor(Math.random() * tetrominos.length);
             curPosition = 4;
-
+            gameOver();
             updateScore();
             drawNext();
             draw();
@@ -188,12 +188,16 @@ document.addEventListener('DOMContentLoaded',()=>{
         curPosition = 4;
         random=Math.floor(Math.random()* tetrominos.length);
         currentTetromino = tetrominos[random][curRotation];
-        
+        score = 100;
+        scoreCard.innerHTML = score;
+
         for(let i=0;i<=199;i++){
             grid[i].classList.remove('tet','freeze');
-
-
         }
+        nextGrid.forEach(square =>{
+            square.classList.remove('tet');
+
+        })
         // setTimeout(100);
         
     })
@@ -228,11 +232,22 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         })
         nextTetros[nextRandom].forEach(index =>{
-            nextGrid[index].classList.add('tet')
+            nextGrid[index+1].classList.add('tet')
         })
 
     }
-   timerId=  setInterval(moveDown,400)
+
+    // GameOver
+
+    function gameOver(){
+        if (currentTetromino.some(index => grid[curPosition + index].classList.contains('freeze'))) {
+            scoreCard.innerHTML = 'end';
+            clearInterval(timerId);
+            timerId = null;
+            // isGameOver = true;
+        }
+    }
+   timerId=  setInterval(moveDown,100)
 
     draw()
 
