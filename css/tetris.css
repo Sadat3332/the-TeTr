@@ -95,14 +95,42 @@ body {
 .grid {
   width: 20%;
   height: 500px;
-  background-color: antiquewhite;
+  background-color: grey;
   display: flex;
   flex-wrap: wrap;
   border: 2px solid white;
   margin: 0 100px;
 }
-.grid .pixel {
+.grid div {
   width: 10%;
-  background-color: grey;
+  /* background-color: grey; */
   border: 1px dotted black;
+}
+
+.tet {
+  background-color: yellow;
+}
+.freeze {
+  background-color: none;
+}
+
+
+.next-tetro-grid{
+  border: 2px solid white;
+  width: 8%;
+  height: 100px;
+  background-color: grey;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid white;
+}
+.next-tetro-grid div{
+  width: 25%;
+  border: 1px dotted black;
+
+
+}
+
+.bottom{
+  background-color: brown;
 }
