@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     const restartButton = document.querySelector('#restart-button')
 
     let nextGrid = Array.from(document.querySelectorAll('.next-tetro-grid div'))
-    
 
     const scoreCard = document.querySelector('#score');
 
@@ -67,9 +66,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     // draw function
 
 
-    let random = Math.floor(Math.random()* tetrominos.length)
     let curRotation  = 0;
     let curPosition = 4;
+    let nextRandom = Math.floor(Math.random() * tetrominos.length);
+    let random = Math.floor(Math.random() * tetrominos.length);
     let currentTetromino = tetrominos[random][curRotation]
 
 
@@ -117,11 +117,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     function freeze(){
         if(currentTetromino.some(index => grid[curPosition+index+width].classList.contains('freeze'))){
             currentTetromino.forEach(index => grid[curPosition+index].classList.add('freeze'));
-            random =  Math.floor(Math.random() * tetrominos.length);
+            random = nextRandom;
             currentTetromino = tetrominos[random][curRotation];
+            nextRandom =  Math.floor(Math.random() * tetrominos.length);
             curPosition = 4;
 
             updateScore();
+            drawNext();
             draw();
         }
     }
@@ -180,6 +182,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     })
 
+    // Restart button
 
     restartButton.addEventListener('click',()=>{
         curPosition = 4;
@@ -220,9 +223,16 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     // Draw Tetro in mini grid
     function drawNext(){
+        nextGrid.forEach(square =>{
+            square.classList.remove('tet');
+
+        })
+        nextTetros[nextRandom].forEach(index =>{
+            nextGrid[index].classList.add('tet')
+        })
 
     }
-   timerId=  setInterval(moveDown,1000)
+   timerId=  setInterval(moveDown,400)
 
     draw()
 
