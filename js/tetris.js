@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             square.classList.remove('tet');
 
         })
+        clearInterval(timerId);
         timerId =setInterval(moveDown,100)
         // setTimeout(100);
         
