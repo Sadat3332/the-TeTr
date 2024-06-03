@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             square.classList.remove('tet');
 
         })
-        timerId=  setInterval(moveDown,100)
+        timerId =setInterval(moveDown,100)
         // setTimeout(100);
         
     })
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     function gameOver(){
         if (currentTetromino.some(index => grid[curPosition + index].classList.contains('freeze'))) {
-            scoreCard.innerHTML = 'end';
+            // scoreCard.innerHTML = 'end';
             clearInterval(timerId);
             timerId = null;
             isGameOver = true;

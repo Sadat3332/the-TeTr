@@ -9,6 +9,7 @@
 }
 body {
   background-color: rgba(0, 0, 0, 0.984);
+  user-select: none;
 }
 
 /* Navbar*/
@@ -42,6 +43,7 @@ body {
   /* border: 1px solid rgba(255, 255, 255, 0.18); */
   /* align-content: center; */
   justify-content: center;
+  
 }
 .direction-card .heading {
   text-align: center;
@@ -50,6 +52,7 @@ body {
 }
 .direction-card ul li {
   text-align: center;
+  list-style: none;
   font-size: 2rem;
   margin: 5px;
 }
@@ -82,24 +85,30 @@ body {
 }
 
 .container {
+  position: relative;
   /* display: flex; */
-  border: 1px solid white;
+  /* border: 1px solid red; */
   align-items: center;
+  justify-content: center;
   width: 100vw;
   display: flex;
+  /* justify-content: space-between; */
 }
 .left {
   /* border: 2px solid red; */
   width: 20%;
+
 }
 .grid {
+  position: relative;
+  left: -50px;
   width: 20%;
   height: 500px;
   background-color: grey;
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid white;
-  margin: 0 100px;
+  border: 2px solid blue;
+  margin: 0 100px ;
 }
 .grid div {
   width: 10%;
@@ -108,16 +117,22 @@ body {
 }
 
 .tet {
-  background-color: yellow;
+  /* background-color: yellow; */
   border: 1px dotted black;
 }
 .freeze {
   background-color: none;
 }
 
+.right {
+  width: 8%;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+}
 .next-tetro-grid {
   border: 2px solid white;
-  width: 8%;
+  width: 100%;
   height: 100px;
   background-color: grey;
   display: flex;
@@ -126,10 +141,26 @@ body {
 }
 .next-tetro-grid div {
   width: 25%;
+  border: 1px solid black;
 }
 
 .bottom {
   background-color: brown;
+}
+
+.right {
+  /* border: 2px solid white; */
+}
+.next-tetro-grid {
+  margin: 50px 0;
+}
+
+.score-card {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 10px;
+  font-size: 2rem;
 }
 
 @media (max-width: 1000px) {
