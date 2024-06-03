@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     const playButton = document.querySelector('#play-button');
     const restartButton = document.querySelector('#restart-button')
 
+    let isGameOver = false;
+
+    const colors = ['blue','red','purple','green','cyan'];
     let nextGrid = Array.from(document.querySelectorAll('.next-tetro-grid div'))
 
     const scoreCard = document.querySelector('#score');
@@ -75,8 +78,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     function draw(){
         currentTetromino.forEach(index =>{
-            console.log(index);
-            grid[index+curPosition].classList.add('tet')
+            grid[curPosition + index].style.backgroundColor = colors[random];
+            grid[index+curPosition].classList.add('tet');
 
         })
     }
@@ -84,6 +87,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     function undraw(){
         currentTetromino.forEach(index =>{
             grid[index+curPosition].classList.remove('tet')
+            grid[curPosition + index].style.backgroundColor = '';
         })
     }
 
@@ -91,14 +95,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     //controls
         
     function control(e) {
-        if (e.keyCode === 37) {
-            moveLeft();
-        } else if (e.keyCode === 38) {
-            rotate();
-        } else if (e.keyCode === 39) {
-            moveRight();
-        } else if (e.keyCode === 40) {
-            moveDown();
+        if (!isGameOver) {
+            if (e.keyCode === 37) {
+                moveLeft();
+            } else if (e.keyCode === 38) {
+                rotate();
+            } else if (e.keyCode === 39) {
+                moveRight();
+            } else if (e.keyCode === 40) {
+                moveDown();
+            }
         }
     }
     //Key control 
@@ -106,10 +112,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     // movedown
 
     function moveDown(){
-        undraw();
-        curPosition+=width;
-        draw();
-        freeze();
+        if(!isGameOver){
+
+            undraw();
+            curPosition+=width;
+            draw();
+            freeze();
+        }
 ``    }
 
     // freeze
@@ -161,12 +170,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     // Rotate
     function rotate(){
         undraw();
-        // console.log('mewo')
-        curRotation++;
-        if(curRotation===currentTetromino.length ){
-            curRotation=0;
+        curRotation = (curRotation + 1) % currentTetromino.length;
+        const nextRotation = tetrominos[random][curRotation];
+        const atRightEdge = nextRotation.some(index => (curPosition + index) % width === width - 1);
+        const atLeftEdge = nextRotation.some(index => (curPosition + index) % width === 0);
+        if (!atRightEdge && !atLeftEdge) {
+            currentTetromino = nextRotation;
         }
-        currentTetromino = tetrominos[random][curRotation];
         draw();
     }
 
@@ -176,8 +186,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             clearInterval(timerId);
             timerId=null;
         }else{
-            draw();
-            timerId = setInterval(moveDown,500);
+            // draw();
+            timerId = setInterval(moveDown,100);
 
         }
     })
@@ -188,16 +198,18 @@ document.addEventListener('DOMContentLoaded',()=>{
         curPosition = 4;
         random=Math.floor(Math.random()* tetrominos.length);
         currentTetromino = tetrominos[random][curRotation];
-        score = 100;
+        score = 0;
         scoreCard.innerHTML = score;
-
+        isGameOver= false;
         for(let i=0;i<=199;i++){
+            grid[i].style.backgroundColor = '';
             grid[i].classList.remove('tet','freeze');
         }
         nextGrid.forEach(square =>{
             square.classList.remove('tet');
 
         })
+        timerId=  setInterval(moveDown,100)
         // setTimeout(100);
         
     })
@@ -229,10 +241,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     function drawNext(){
         nextGrid.forEach(square =>{
             square.classList.remove('tet');
+            // grid[index].style.backgroundColor = '';
 
         })
+        nextGrid.forEach(square => {
+            square.style.backgroundColor = '';
+        })
         nextTetros[nextRandom].forEach(index =>{
-            nextGrid[index+1].classList.add('tet')
+            nextGrid[index+1].classList.add('tet');
+            nextGrid[index+1].style.backgroundColor = colors[nextRandom];
         })
 
     }
@@ -244,7 +261,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             scoreCard.innerHTML = 'end';
             clearInterval(timerId);
             timerId = null;
-            // isGameOver = true;
+            isGameOver = true;
         }
     }
    timerId=  setInterval(moveDown,100)

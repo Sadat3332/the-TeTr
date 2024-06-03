@@ -39,7 +39,7 @@ body {
   backdrop-filter: blur(3.5px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
   /* align-content: center; */
   justify-content: center;
 }
@@ -67,7 +67,7 @@ body {
   backdrop-filter: blur(3.5px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
   margin: 20px 0;
 }
 .controls button {
@@ -85,11 +85,11 @@ body {
   /* display: flex; */
   border: 1px solid white;
   align-items: center;
-
+  width: 100vw;
   display: flex;
 }
 .left {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 20%;
 }
 .grid {
@@ -115,8 +115,7 @@ body {
   background-color: none;
 }
 
-
-.next-tetro-grid{
+.next-tetro-grid {
   border: 2px solid white;
   width: 8%;
   height: 100px;
@@ -125,13 +124,26 @@ body {
   flex-wrap: wrap;
   border: 2px solid white;
 }
-.next-tetro-grid div{
+.next-tetro-grid div {
   width: 25%;
-  
-
-
 }
 
-.bottom{
+.bottom {
   background-color: brown;
+}
+
+@media (max-width: 1000px) {
+  .direction-card .heading {
+    text-align: center;
+    font-size: 1rem;
+    margin: 10px;
+  }
+  .direction-card ul li {
+    text-align: center;
+    font-size: 1rem;
+    margin: 5px;
+  }
+  .controls button {
+    font-size: 1rem;
+  }
 }
