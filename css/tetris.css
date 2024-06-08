@@ -111,7 +111,7 @@ body {
   border: 2px solid blue;
   margin: 0 100px ;
 }
-.grid div {
+.grid div, .gridCell {
   width: 10%;
   /* background-color: grey; */
   border: 1px dotted black;
@@ -143,7 +143,6 @@ body {
   font-size: 4rem;
   margin-bottom: 20px;
 }
-
 
 
 .right {
