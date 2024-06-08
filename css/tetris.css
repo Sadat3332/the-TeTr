@@ -118,7 +118,7 @@ body {
 
 .tet {
   /* background-color: yellow; */
-  border: 1px dotted black;
+  border: 1px solid black;
 }
 .freeze {
   background-color: none;
@@ -141,7 +141,7 @@ body {
 }
 .next-tetro-grid div {
   width: 25%;
-  border: 1px solid black;
+  border: 1px dotted black;
 }
 
 .bottom {
@@ -184,17 +184,45 @@ body {
     display: flex;
     flex-direction: column;
   }
+
+  .grid div{
+  }
+  .tet{
+    
+  }
+
+  .left{
+    display: flex;
+    width: 100%;
+    height:200px;
+  }
+  .controls{
+    border: 1px solid white;
+    margin: 0;
+    height: 100%;
+  }
+  .direction-card{
+    border: 1px solid white;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+  }
   .grid{
     left:0;
     width: 100%;
     margin:0;
   }
   .right{
+    margin: 10px;
     width: 100%;
     display: flex;
+    /* border: 1px solid red; */
+    height: 100px;
   }
   .next-tetro-grid{
-    width: 50%;
-    margin: 0 40px;
+    width: 40%;
+    margin:  40px;
   }
 }

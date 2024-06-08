@@ -87,7 +87,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     //undraw
     function undraw(){
         currentTetromino.forEach(index =>{
-            grid[index+curPosition].classList.remove('tet')
+            grid[index+curPosition].classList.remove('tet');
+
             grid[curPosition + index].style.backgroundColor = '';
         })
     }
