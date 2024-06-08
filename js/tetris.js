@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     let nextGrid = Array.from(document.querySelectorAll('.next-tetro-grid div'))
 
     const scoreCard = document.querySelector('#score');
-
+    let timerId;
     let score = 0
+    let isPaused = false;
 
     // defining tetrominos
     const Ltetromino = [
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     //controls
         
     function control(e) {
-        if (!isGameOver) {
+        if (!isGameOver && !isPaused) {
             if (e.keyCode === 37) {
                 moveLeft();
             } else if (e.keyCode === 38) {
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     // movedown
 
     function moveDown(){
-        if(!isGameOver){
+        if(!isGameOver && !isPaused){
 
             undraw();
             curPosition+=width;
@@ -183,9 +184,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     //Play button
     playButton.addEventListener('click', ()=>{
         if(timerId){
+            isPaused=true;
             clearInterval(timerId);
             timerId=null;
         }else{
+            isPaused=false;
             // draw();
             timerId = setInterval(moveDown,100);
 
@@ -265,9 +268,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             isGameOver = true;
         }
     }
-   timerId=  setInterval(moveDown,100)
 
-    draw()
+
 
 
 
