@@ -1,35 +1,6 @@
-function renderGrid(){
-    let gridSize = 200;
-    let rowLength = 10;
-    // render main grid
-    let gridElement=document.getElementById('grid');
-    for(let i = 0;i<gridSize;i++){
-        let gridCell = document.createElement('div');
-        
-        gridElement.appendChild(gridCell);
-        }
-    console.log(gridElement.innerHTML);
-    for(let i = 0;i<rowLength;i++){
-        let bottomCell = document.createElement('div');
-        bottomCell.classList.add('freeze');
-        bottomCell.classList.add('bottom');
-        gridElement.appendChild(bottomCell);
+import renderGrid from "./renderGrid.js";
+import { tetrominos,nextTetros } from "./tetromino.js";
 
-    }
-
-    // render bottom grid
-    let nextGridSize = 16;
-    let nextGridElement = document.querySelector('.next-tetro-grid');
-
-    for(let i =0;i<nextGridSize;i++){
-        let nextGridCell = document.createElement('div');
-        nextGridElement.appendChild(nextGridCell);
-
-    }
-
-
-
-}
 renderGrid();
 document.addEventListener('DOMContentLoaded',()=>{
     const width = 10;
@@ -41,63 +12,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     let isGameOver = false;
     const colors = ['blue','red','purple','green','cyan'];
     let nextGrid = Array.from(document.querySelectorAll('.next-tetro-grid div'))
-
     const scoreCard = document.querySelector('#score');
     let timerId;
     let score = 0
     let isPaused = false;
-
-    // defining tetrominos
-    const Ltetromino = [
-        [1,width+1,width*2+1,2],
-        [width,width+1,width+2,width*2+2],
-        [1,width+1,width*2+1,width*2],
-        [width,width*2,width*2+1,width*2+2]
-    ];
-    
-    const Ttetromino = [
-        [1, width, width + 1, width + 2],
-        [1, width + 1, width + 2, width * 2 + 1],
-        [width, width + 1, width + 2, width * 2 + 1],
-        [1, width, width + 1, width * 2 + 1]
-    ];
-
-    const Otetromino = [
-        [0, 1, width, width + 1],
-        [0, 1, width, width + 1],
-        [0, 1, width, width + 1],
-        [0, 1, width, width + 1]
-    ];
-
-    const Ztetromino = [
-        [0, width, width + 1, width * 2 + 1],
-        [width + 1, width + 2, width * 2, width * 2 + 1],
-        [0, width, width + 1, width * 2 + 1],
-        [width + 1, width + 2, width * 2, width * 2 + 1]
-    ];
-
-    const Itetromino = [
-        [1, width + 1, width * 2 + 1, width * 3 + 1],
-        [width, width + 1, width + 2, width + 3],
-        [1, width + 1, width * 2 + 1, width * 3 + 1],
-        [width, width + 1, width + 2, width + 3]
-    ];
-
-    const tetrominos = [Ltetromino,Ztetromino,Ttetromino,Otetromino,Itetromino];
-
-
-
-    // Next Tetro grid
-    const miniGridWidth = 4;
-    const nextTetros = [
-        [1, miniGridWidth + 1, miniGridWidth * 2 + 1, 2], // L
-        [0, miniGridWidth, miniGridWidth + 1, miniGridWidth * 2 + 1], // Z
-        [1, miniGridWidth, miniGridWidth + 1, miniGridWidth + 2], // T
-        [0, 1, miniGridWidth, miniGridWidth + 1], // O
-        [1, miniGridWidth + 1, miniGridWidth * 2 + 1, miniGridWidth * 3 + 1] // I
-
-    ]
-
 
     // draw function
 
@@ -144,7 +62,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     //Key control 
     document.addEventListener('keyup', control);
     // movedown
-
     function moveDown(){
         if(!isGameOver && !isPaused){
 
