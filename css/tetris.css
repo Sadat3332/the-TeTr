@@ -73,7 +73,7 @@ body {
   /* border: 1px solid rgba(255, 255, 255, 0.18); */
   margin: 20px 0;
 }
-.controls button {
+.controls button,.restart-btn {
   background: rgba(255, 255, 255, 0.05);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(3.5px);
@@ -82,6 +82,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   margin: 20px;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 .container {
@@ -123,6 +124,27 @@ body {
 .freeze {
   background-color: none;
 }
+/* Game Over Screen */
+.game-over {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.game-over h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+
 
 .right {
   width: 8%;
@@ -184,13 +206,6 @@ body {
     display: flex;
     flex-direction: column;
   }
-
-  .grid div{
-  }
-  .tet{
-    
-  }
-
   .left{
     display: flex;
     width: 100%;
@@ -209,13 +224,16 @@ body {
     flex-direction: column;
 
   }
+  #grid{
+    order: 1;
+  }
   .grid{
     left:0;
-    width: 100%;
-    margin:0;
+    width: 80%;
+    margin:10px auto;
   }
   .right{
-    margin: 10px;
+    margin: 5px;
     width: 100%;
     display: flex;
     /* border: 1px solid red; */

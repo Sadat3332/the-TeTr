@@ -22,7 +22,7 @@
         <div class="left">
             <div class="controls">
                 <button id="play-button">Play/Pause</button>
-                <button id="restart-button">Restart</button>
+                <button class="restart-btn">Restart</button>
             </div>
             <div class="direction-card">
                 <div class="heading">Directions</div>
@@ -37,7 +37,7 @@
         
         </div>
 
-        <div class="grid">
+        <div id="grid" class="grid">
             <div ></div>
             <div ></div>
             <div ></div>
@@ -250,9 +250,9 @@
             <div class="freeze bottom"></div>
         </div>
 
-        <div class="right">
+        <div class="right" id="right">
             
-        <div class="next-tetro-grid">
+        <div id="next-tetro-grid" class="next-tetro-grid">
             <div ></div>
             <div ></div>
             <div ></div>
@@ -277,7 +277,10 @@
         </div>
         </div>
 
-        
+        <div id="game-over" class="game-over">
+            <h1>Game Over</h1>
+            <button class="restart-btn">Restart</button>
+          </div>
 
     </div>
 

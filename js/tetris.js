@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     let grid = Array.from(document.querySelectorAll('.grid div'))
     let gridContainer = document.querySelector('.grid')
     const playButton = document.querySelector('#play-button');
-    const restartButton = document.querySelector('#restart-button')
-
+    const restartButton = document.querySelectorAll('.restart-btn')
+    let gameOverScreen = document.querySelector('.game-over')
     let isGameOver = false;
-
+    console.log(restartButton)
     const colors = ['blue','red','purple','green','cyan'];
     let nextGrid = Array.from(document.querySelectorAll('.next-tetro-grid div'))
 
@@ -198,26 +198,31 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     // Restart button
 
-    restartButton.addEventListener('click',()=>{
-        curPosition = 4;
-        random=Math.floor(Math.random()* tetrominos.length);
-        currentTetromino = tetrominos[random][curRotation];
-        score = 0;
-        scoreCard.innerHTML = score;
-        isGameOver= false;
-        for(let i=0;i<=199;i++){
-            grid[i].style.backgroundColor = '';
-            grid[i].classList.remove('tet','freeze');
-        }
-        nextGrid.forEach(square =>{
-            square.classList.remove('tet');
-
+    restartButton.forEach((btn)=>{
+        btn.addEventListener('click',()=>{
+            curPosition = 4;
+            random=Math.floor(Math.random()* tetrominos.length);
+            currentTetromino = tetrominos[random][curRotation];
+            score = 0;
+            scoreCard.innerHTML = score;
+            isGameOver= false;
+            gameOverScreen.style.display = 'none';
+            for(let i=0;i<=199;i++){
+                grid[i].style.backgroundColor = '';
+                grid[i].classList.remove('tet','freeze');
+            }
+            nextGrid.forEach(square =>{
+                square.classList.remove('tet');
+    
+            })
+            clearInterval(timerId);
+            isPaused=false;
+            timerId =setInterval(moveDown,100)
+            // setTimeout(100);
+            
         })
-        clearInterval(timerId);
-        timerId =setInterval(moveDown,100)
-        // setTimeout(100);
-        
     })
+  
 
     //Update Score
 
@@ -263,10 +268,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     function gameOver(){
         if (currentTetromino.some(index => grid[curPosition + index].classList.contains('freeze'))) {
-            // scoreCard.innerHTML = 'end';
             clearInterval(timerId);
             timerId = null;
             isGameOver = true;
+            gameOverScreen.style.display = 'flex';
         }
     }
 
