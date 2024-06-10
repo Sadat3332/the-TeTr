@@ -1,6 +1,7 @@
 import renderGrid from "./renderGrid.js";
 import { tetrominos,nextTetros } from "./tetromino.js";
 
+
 renderGrid();
 document.addEventListener('DOMContentLoaded',()=>{
     const width = 10;

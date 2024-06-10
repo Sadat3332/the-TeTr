@@ -15,13 +15,15 @@ body {
 /* Navbar*/
 .nav {
   /* border: 2px solid white; */
-  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  background-color: rgb(0, 0, 0);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(3.5px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-
+  align-items: center;
+  justify-content: center;
   margin: 10px;
 }
 
@@ -248,6 +250,7 @@ body {
 footer{
   display: flex;
   justify-content: space-between;
+  height: 100px;
   bottom: 0;
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
@@ -259,7 +262,7 @@ footer{
   padding: 10px;
   font-size: 1.5rem;
   color: white;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
 }
 footer ul{
   list-style: none;
@@ -286,3 +289,4 @@ footer ul li i:hover{
   backdrop-filter: blur(3.5px);
   -webkit-backdrop-filter: blur(8px);
 }
+
